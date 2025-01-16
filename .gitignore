@@ -1,0 +1,15 @@
+# Ignore CSV data files
+Movies_Test_Data.csv
+
+# Ignore MySQL dump files
+*.sql
+
+# Ignore MySQL log files
+*.log
+
+# Ignore MySQL backup files
+*.bak
+
+# Ignore temporary files
+*.tmp
+*.swp
