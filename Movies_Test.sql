@@ -17,6 +17,33 @@ Star4 VARCHAR (50),
 No_of_Votes INT 
 );
 
+
+CREATE TABLE Product_Table(
+ProductID INT primary key, 
+ProductName VARCHAR(255), 
+CategoryID INT NOT NULL, 
+Price INT);
+
+CREATE TABLE Categories_Table(
+CategoryID INT Primary Key,
+CategoryName Varchar(255),
+Description Varchar(255)
+);
+
+INSERT INTO product_table(ProductID, ProductName, CategoryID, Price)
+VALUES
+(1, 'Chais', 1, 18),
+(2, 'Chang', 1, 19),
+(3, 'AniseedSyrup', 2, 20);
+
+
+INSERT INTO categories_table(CategoryID, CategoryName, Description)
+VALUES
+(1, 'Beverages', 'Soft drinks, coffees, teas, beers, and ales'),
+(2, 'Condiments', 'Sweet and savory sauces, relishes, spreads, and seasonings'),
+(3, 'Confections', 'Desserts, candies, and sweet breads');
+
+
 -- ALTER TABLE table_name
 -- MODIFY COLUMN column_name FLOAT
 
@@ -30,17 +57,33 @@ MODIFY COLUMN IMDB_Rating DECIMAL(3,1);
 SELECT *
 FROM Movies_Table;
 
-
-
 ALTER TABLE Movies_Table
 MODIFY COLUMN Released_Year VARCHAR(255);
 
 ALTER TABLE Movies_Table
 DROP CHECK chk_year;
 
+SHOW CREATE TABLE Movies_Table;
+
+ALTER TABLE Movies_Table ADD CONSTRAINT UNIQUE (Series_Title);
+
 DESCRIBE Movies_Table;
 
-UPDATE Movies_Table
+SELECT *
+FROM Movies_Table
+WHERE Series_Title = '12 Angry Men';
+
+SELECT *
+FROM movies_table
+WHERE Series_Title = '(500) Days of Summer';
+
+SELECT Series_Title, COUNT(*)
+FROM movies_table
+GROUP BY Series_Title
+HAVING COUNT(*) > 1;
+
+
+CREATE TABLE Movies_Table_Backup AS SELECT * FROM Movies_Table;
 
 
 LOAD DATA INFILE 'C:/ProgramData/MySQL/MySQL Server 8.0/Uploads/Movies_Test_Data.csv' 
