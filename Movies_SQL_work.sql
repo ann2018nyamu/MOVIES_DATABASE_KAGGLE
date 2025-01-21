@@ -66,6 +66,7 @@ SELECT *
 FROM movies_table
 WHERE Genre NOT IN ('Comedy',  'Drama');
 
+-- BETWEEN AND & NOTBETWEEN --
 SELECT  Series_Title, Genre, Released_Year
 FROM movies_table
 WHERE Released_Year BETWEEN 2000 AND 2010;
@@ -82,6 +83,47 @@ SELECT *
 FROM movies_table
 WHERE  Released_Year BETWEEN 1997 AND 2000
 AND IMDB_Rating IN (7, 8, 9);
+
+
+SELECT Runtime, Series_Title, Genre
+FROM movies_table
+WHERE Runtime BETWEEN 140 AND 150;
+
+SELECT Series_Title, Genre, Runtime
+FROM movies_table
+WHERE Runtime NOT BETWEEN 140 AND 150;
+
+-- USE OF ALIAS--
+SELECT Series_Title AS Title, IMDB_Rating AS Rating, 
+Released_Year AS Year, Genre AS "Genre Type"
+FROM movies_table;
+
+SELECT Series_Title Title
+FROM movies_table;
+
+SELECT Series_Title, Director + '' + Star1 + '' + 
+Star2 + ',' + Star3 + ',' + Star4  AS CREW
+FROM movies_table;
+
+-- SQL JOIN --
+-- Join clause is used to
+-- combine rows from two or more tables based on a related column between them. --
+-- (INNER) JOIN: Returns records that matching values in both tables.--alter--
+-- LEFT (OUTER) JOIN: Returns all records from the left table, 
+-- and the matched records from the right table --
+-- RIGHT (OUTER) JOIN: Returns all records from the right table, 
+-- and the matched records from the left table --
+-- FULL(OUTER) JOIN: Returns all records when 
+-- there is a match in either left or right table --
+
+SELECT ProductID, ProductName, CategoryName
+FROM product_table
+INNER JOIN categories_table ON 
+product_table.CategoryID = categories_table.CategoryID;
+
+ 
+
+
 
 
 
