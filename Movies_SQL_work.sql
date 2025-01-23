@@ -328,6 +328,96 @@ FROM movies_table
 WHERE Released_Year > 1990
 GROUP BY Genre, Director;
 
+-- Sum of Votes for Movies in Specific Genres --
+SELECT Genre, SUM(No_of_Votes) AS Total_Votes
+FROM movies_table
+WHERE Genre IN ('Drama', 'Comedy')
+GROUP BY Genre;
+
+-- Total Votes for Top-Rated Movies Grouped by Year --
+SELECT Series_Title, IMDB_Rating, SUM(No_of_Votes) AS All_Votes
+FROM movies_table
+WHERE IMDB_Rating > 8.7
+GROUP BY Series_Title, IMDB_Rating, Released_Year;
+
+-- Total Number of Votes for Movies Based on Meta Scores --
+SELECT Genre, Meta_score, SUM(No_of_Votes) AS Total_Votes
+FROM movies_table
+WHERE Meta_score IS NOT NULL AND Meta_score >= 85
+AND Genre IN ('Drama', 'Comedy')
+GROUP BY Genre, Meta_score;
+
+-- Total Votes by Genre for Movies Directed by a Specific Director --
+SELECT Genre, Director, SUM(No_of_Votes) AS Total_Votes
+FROM movies_table
+WHERE Director LIKE ('Alfred Hitchcock')
+GROUP BY Genre, Director;
+
+-- Total Votes by Genre for Movies Released Between 1990 and 2000 --
+SELECT Genre, Released_Year, SUM(No_of_Votes) AS Total_Votes
+FROM movies_table
+WHERE Released_Year BETWEEN 1995 AND 2000
+GROUP BY Genre, Released_Year;
+
+-- Total Votes for Movies by Certification and Release Year --
+SELECT Genre, Released_Year, Certificate, SUM(No_of_Votes) AS Total_Votes
+FROM movies_table
+WHERE Released_Year BETWEEN 2000 AND 2005
+AND Certificate IN ('A', 'UA')
+GROUP BY Genre, Released_Year, Certificate;
+
+-- SQL HAVING Clause --
+-- Having clause is used because the WHERE keyboard is used with aggregate functions--
+SELECT column_name(s)
+FROM table_name
+WHERE table_name LIKE '%a%'
+GROUP BY column_name(s)
+Having table_name LIKE '%a%'
+ORDER BY column_name(s);
+
+-- Lists the number of customers in each country.
+-- Only includes countries with more than 5 Customers 
+SELECT COUNT(ClientID), Country
+FROM clients_table
+GROUP BY Country
+HAVING COUNT(ClientID) > 1;
+
+SELECT COUNT(ClientID), City
+FROM clients_table
+GROUP BY City
+HAVING COUNT(ClientID) > 1;
+
+SELECT COUNT(ClientID), ContactName
+FROM clients_table
+GROUP BY ContactName
+HAVING COUNT(ClientID) > 1
+ORDER BY COUNT(ClientID) DESC;
+
+SELECT COUNT(Series_Title), Released_Year
+FROM movies_table
+GROUP BY Released_Year
+HAVING COUNT(Series_Title) >5
+ORDER BY COUNT(Series_Title) DESC;
+
+-- More HAVING Examples --
+SELECT movies_table.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
